@@ -22,7 +22,7 @@ import { profileData, statsData } from '../data/portfolioData'
           <!-- Availability Pill -->
           <div class="availability-pill" v-if="profileData.availableForWork">
             <span class="status-indicator"></span>
-            <span>Open to fullstack &amp; backend engineering roles</span>
+            <span>Open to Fullstack &amp; Backend Engineer roles</span>
           </div>
 
           <!-- Name & Role -->

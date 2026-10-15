@@ -69,7 +69,7 @@ const currentYear = new Date().getFullYear()
 
       <div class="footer-sub">
         <span>&copy; {{ currentYear }} Rico Wahyu Yudana Putra</span>
-        <span>Built with Vue 3 &amp; TypeScript</span>
+        <!-- <span>Built with Vue 3 &amp; TypeScript</span> -->
       </div>
     </div>
   </footer>
