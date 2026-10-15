@@ -4,7 +4,6 @@ import {
   Calendar,
   MapPin,
   Award,
-  BookOpen,
 } from 'lucide-vue-next'
 import { educationData } from '../data/portfolioData'
 </script>
@@ -12,22 +11,13 @@ import { educationData } from '../data/portfolioData'
 <template>
   <section id="education" class="section education-section">
     <div class="container">
-      <!-- Section Header -->
       <div class="section-header">
-        <div class="section-tag">
-          <GraduationCap :size="14" />
-          <span>Academic Background</span>
-        </div>
-        <h2 class="section-title">
-          Education &amp;
-          <span class="text-gradient">Credentials</span>
-        </h2>
+        <h2 class="section-title">Education</h2>
         <p class="section-subtitle">
-          Formal foundation in Information Systems, software development principles, and enterprise information technology.
+          Academic foundation in Information Systems and Software Engineering.
         </p>
       </div>
 
-      <!-- Education Cards -->
       <div class="education-grid">
         <div
           v-for="(item, idx) in educationData"
@@ -36,26 +26,24 @@ import { educationData } from '../data/portfolioData'
         >
           <div class="edu-top">
             <div class="edu-icon-box">
-              <GraduationCap :size="28" />
+              <GraduationCap :size="22" />
             </div>
-            <div class="edu-meta-right">
-              <span class="gpa-pill">
-                <Award :size="14" />
-                <span>GPA {{ item.gpa }}</span>
-              </span>
+            <div class="gpa-pill font-mono">
+              <Award :size="13" />
+              <span>GPA {{ item.gpa }}</span>
             </div>
           </div>
 
           <h3 class="edu-degree">{{ item.degree }}</h3>
-          <h4 class="edu-institution">{{ item.institution }}</h4>
+          <div class="edu-institution">{{ item.institution }}</div>
 
           <div class="edu-details-row">
             <span class="edu-detail">
-              <Calendar :size="14" />
+              <Calendar :size="13" />
               <span>{{ item.period }}</span>
             </span>
             <span class="edu-detail">
-              <MapPin :size="14" />
+              <MapPin :size="13" />
               <span>{{ item.location }}</span>
             </span>
           </div>
@@ -65,22 +53,10 @@ import { educationData } from '../data/portfolioData'
           </p>
 
           <div class="edu-topics">
-            <span class="badge">
-              <BookOpen :size="12" />
-              <span>Enterprise Systems</span>
-            </span>
-            <span class="badge">
-              <BookOpen :size="12" />
-              <span>Database Architecture</span>
-            </span>
-            <span class="badge">
-              <BookOpen :size="12" />
-              <span>Software Engineering</span>
-            </span>
-            <span class="badge">
-              <BookOpen :size="12" />
-              <span>Business Process Modeling</span>
-            </span>
+            <span class="tag">Enterprise Systems</span>
+            <span class="tag">Database Design</span>
+            <span class="tag">Software Engineering</span>
+            <span class="tag">Business Process Modeling</span>
           </div>
         </div>
       </div>
@@ -90,89 +66,98 @@ import { educationData } from '../data/portfolioData'
 
 <style scoped>
 .education-grid {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
 .edu-card {
-  padding: 2.5rem;
+  padding: 2rem;
 }
 
 .edu-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .edu-icon-box {
-  width: 52px;
-  height: 52px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-md);
-  background: rgba(99, 102, 241, 0.12);
-  border: 1px solid rgba(99, 102, 241, 0.25);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-primary);
+  color: var(--text-main);
 }
 
 .gpa-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-full);
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  color: var(--accent-amber);
-  font-weight: 700;
-  font-size: 0.85rem;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 0.8rem;
 }
 
 .edu-degree {
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: var(--text-main);
-  letter-spacing: -0.015em;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .edu-institution {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--accent-primary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .edu-details-row {
   display: flex;
   flex-wrap: wrap;
   gap: 1.25rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .edu-detail {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.85rem;
+  gap: 0.35rem;
+  font-size: 0.8rem;
   color: var(--text-dim);
   font-family: var(--font-mono);
 }
 
 .edu-desc {
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .edu-topics {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  padding-top: 1.25rem;
+  gap: 0.4rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--border-subtle);
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.775rem;
 }
 </style>

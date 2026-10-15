@@ -8,7 +8,6 @@ import {
   Copy,
   Check,
   Send,
-  Sparkles,
   MapPin,
 } from 'lucide-vue-next'
 import { profileData } from '../data/portfolioData'
@@ -31,14 +30,14 @@ const copyEmail = async () => {
 }
 
 const sendInquiry = (method: 'email' | 'whatsapp') => {
-  const subject = encodeURIComponent(senderSubject.value || 'Project Inquiry / Collaboration')
+  const subject = encodeURIComponent(senderSubject.value || 'Hello from Portfolio')
   const body = encodeURIComponent(
-    `Hello Rico,\n\nMy name is ${senderName.value || 'Visitor'}.\n\nMessage:\n${senderMessage.value || 'I am interested in collaborating with you.'}\n\nBest regards,`
+    `Hi Rico,\n\nMy name is ${senderName.value || 'Visitor'}.\n\n${senderMessage.value || 'I would like to discuss an opportunity.'}\n\nBest,`
   )
 
   if (method === 'whatsapp') {
     const waText = encodeURIComponent(
-      `Hello Rico, my name is ${senderName.value || 'Visitor'}. ${senderMessage.value || 'I would like to discuss an opportunity.'}`
+      `Hi Rico, my name is ${senderName.value || 'Visitor'}. ${senderMessage.value || 'I would like to discuss an opportunity.'}`
     )
     window.open(`https://wa.me/6285604533743?text=${waText}`, '_blank')
   } else {
@@ -50,32 +49,23 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
 <template>
   <section id="contact" class="section contact-section">
     <div class="container">
-      <!-- Section Header -->
       <div class="section-header">
-        <div class="section-tag">
-          <Sparkles :size="14" />
-          <span>Get In Touch</span>
-        </div>
-        <h2 class="section-title">
-          Let's Build Something
-          <span class="text-gradient">Exceptional Together</span>
-        </h2>
+        <h2 class="section-title">Get In Touch</h2>
         <p class="section-subtitle">
-          Open for fullstack engineering roles, enterprise system architecture, and impactful software collaborations.
+          Have an inquiry, role opening, or want to discuss a project? Feel free to reach out.
         </p>
       </div>
 
-      <!-- Contact Grid -->
       <div class="contact-grid">
-        <!-- Left: Quick Direct Channels -->
+        <!-- Left: Direct Channels -->
         <div class="contact-info-col">
           <!-- Email Card -->
           <div class="contact-card glass-card">
-            <div class="card-icon-box email-icon">
-              <Mail :size="24" />
+            <div class="card-icon-box">
+              <Mail :size="20" />
             </div>
             <div class="card-details">
-              <span class="card-label">Direct Email</span>
+              <span class="card-label">Email</span>
               <a :href="'mailto:' + profileData.email" class="card-value">
                 {{ profileData.email }}
               </a>
@@ -84,21 +74,21 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
               @click="copyEmail"
               class="copy-btn"
               :class="{ copied: isEmailCopied }"
-              :title="isEmailCopied ? 'Copied!' : 'Copy to clipboard'"
+              :title="isEmailCopied ? 'Copied' : 'Copy email address'"
             >
-              <Check v-if="isEmailCopied" :size="16" class="text-emerald" />
-              <Copy v-else :size="16" />
-              <span>{{ isEmailCopied ? 'Copied!' : 'Copy' }}</span>
+              <Check v-if="isEmailCopied" :size="14" class="text-emerald" />
+              <Copy v-else :size="14" />
+              <span>{{ isEmailCopied ? 'Copied' : 'Copy' }}</span>
             </button>
           </div>
 
           <!-- WhatsApp Card -->
           <div class="contact-card glass-card">
-            <div class="card-icon-box wa-icon">
-              <MessageCircle :size="24" />
+            <div class="card-icon-box">
+              <MessageCircle :size="20" />
             </div>
             <div class="card-details">
-              <span class="card-label">WhatsApp Direct</span>
+              <span class="card-label">WhatsApp</span>
               <a
                 :href="profileData.whatsapp"
                 target="_blank"
@@ -118,19 +108,19 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
             </a>
           </div>
 
-          <!-- Location & Availability Card -->
+          <!-- Location Card -->
           <div class="contact-card glass-card">
-            <div class="card-icon-box loc-icon">
-              <MapPin :size="24" />
+            <div class="card-icon-box">
+              <MapPin :size="20" />
             </div>
             <div class="card-details">
-              <span class="card-label">Location &amp; Work Mode</span>
+              <span class="card-label">Location</span>
               <span class="card-value-text">{{ profileData.location }}</span>
-              <span class="card-subtext">On-site / Hybrid / Full Remote</span>
+              <span class="card-subtext">Open to Remote / Hybrid / On-site</span>
             </div>
           </div>
 
-          <!-- Social Links Grid -->
+          <!-- Social Links -->
           <div class="social-links-grid">
             <a
               :href="profileData.github"
@@ -138,7 +128,7 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
               rel="noopener noreferrer"
               class="social-tile glass-card"
             >
-              <Github :size="22" />
+              <Github :size="18" />
               <span>GitHub</span>
             </a>
             <a
@@ -147,17 +137,17 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
               rel="noopener noreferrer"
               class="social-tile glass-card"
             >
-              <Linkedin :size="22" />
+              <Linkedin :size="18" />
               <span>LinkedIn</span>
             </a>
           </div>
         </div>
 
-        <!-- Right: Fast Inquiry Form -->
+        <!-- Right: Message Form -->
         <div class="contact-form-card glass-card">
-          <h3 class="form-title">Send a Quick Message</h3>
+          <h3 class="form-title">Send a Message</h3>
           <p class="form-desc">
-            Fill in the details below to dispatch an email or initiate an instant WhatsApp conversation.
+            You can compose a quick message here to open via email or direct WhatsApp chat.
           </p>
 
           <form @submit.prevent="sendInquiry('email')" class="form-body">
@@ -168,38 +158,38 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
                 v-model="senderName"
                 type="text"
                 class="form-input"
-                placeholder="e.g. Alex Johnson"
+                placeholder="Name"
                 required
               />
             </div>
 
             <div class="form-group">
-              <label for="subject" class="form-label">Subject / Purpose</label>
+              <label for="subject" class="form-label">Subject</label>
               <input
                 id="subject"
                 v-model="senderSubject"
                 type="text"
                 class="form-input"
-                placeholder="e.g. Fullstack Engineer Role or Project Discussion"
+                placeholder="Subject / Role / Project"
                 required
               />
             </div>
 
             <div class="form-group">
-              <label for="message" class="form-label">Message Details</label>
+              <label for="message" class="form-label">Message</label>
               <textarea
                 id="message"
                 v-model="senderMessage"
                 rows="4"
                 class="form-textarea"
-                placeholder="Tell me about your system requirements, team, or opportunity..."
+                placeholder="Your message..."
                 required
               ></textarea>
             </div>
 
             <div class="form-buttons">
               <button type="submit" class="btn btn-primary flex-1">
-                <Send :size="16" />
+                <Send :size="14" />
                 <span>Send via Email</span>
               </button>
               <button
@@ -207,8 +197,8 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
                 @click="sendInquiry('whatsapp')"
                 class="btn btn-secondary flex-1"
               >
-                <MessageCircle :size="16" />
-                <span>Chat via WhatsApp</span>
+                <MessageCircle :size="14" />
+                <span>Send via WhatsApp</span>
               </button>
             </div>
           </form>
@@ -222,56 +212,41 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
-  gap: 2.5rem;
+  gap: 2rem;
   align-items: start;
 }
 
 @media (max-width: 900px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.75rem;
   }
 }
 
 .contact-info-col {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .contact-card {
-  padding: 1.25rem 1.5rem;
+  padding: 1.15rem 1.35rem;
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .card-icon-box {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-}
-
-.email-icon {
-  background: rgba(99, 102, 241, 0.12);
-  color: var(--accent-primary);
-  border: 1px solid rgba(99, 102, 241, 0.25);
-}
-
-.wa-icon {
-  background: rgba(16, 185, 129, 0.12);
-  color: var(--accent-emerald);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-}
-
-.loc-icon {
-  background: rgba(6, 182, 212, 0.12);
-  color: var(--accent-cyan);
-  border: 1px solid rgba(6, 182, 212, 0.25);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
 }
 
 .card-details {
@@ -281,19 +256,18 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
 }
 
 .card-label {
-  font-size: 0.775rem;
-  font-weight: 700;
+  font-size: 0.725rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-dim);
-  margin-bottom: 0.15rem;
+  margin-bottom: 0.1rem;
 }
 
 .card-value {
-  font-size: 0.975rem;
+  font-size: 0.925rem;
   font-weight: 600;
   color: var(--text-main);
-  transition: color var(--transition-fast);
 }
 
 .card-value:hover {
@@ -301,24 +275,24 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
 }
 
 .card-value-text {
-  font-size: 0.95rem;
+  font-size: 0.925rem;
   font-weight: 600;
   color: var(--text-main);
 }
 
 .card-subtext {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  font-size: 0.775rem;
+  color: var(--text-dim);
 }
 
 .copy-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.45rem 0.85rem;
+  padding: 0.35rem 0.75rem;
   border-radius: var(--radius-sm);
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.775rem;
+  font-weight: 500;
   color: var(--text-muted);
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
@@ -327,93 +301,89 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
 
 .copy-btn:hover {
   color: var(--text-main);
-  border-color: var(--border-accent);
+  border-color: var(--border-medium);
 }
 
 .copy-btn.copied {
   color: var(--accent-emerald);
-  border-color: rgba(16, 185, 129, 0.4);
 }
 
 .social-links-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .social-tile {
-  padding: 1.25rem;
+  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.55rem;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
   transition: all var(--transition-normal);
 }
 
 .social-tile:hover {
-  color: var(--accent-primary);
-  border-color: var(--border-accent);
-  transform: translateY(-2px);
+  color: var(--text-main);
+  border-color: var(--border-medium);
 }
 
 /* Form Card */
 .contact-form-card {
-  padding: 2.25rem;
+  padding: 2rem;
 }
 
 .form-title {
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-size: 1.25rem;
+  font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 0.4rem;
-  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
 }
 
 .form-desc {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: var(--text-muted);
   line-height: 1.5;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .form-body {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
 .form-label {
-  font-size: 0.825rem;
-  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--text-muted);
 }
 
 .form-input,
 .form-textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.65rem 0.85rem;
   border-radius: var(--radius-md);
   background: var(--bg-input);
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
-  font-size: 0.925rem;
+  font-size: 0.9rem;
   transition: all var(--transition-fast);
 }
 
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  border-color: var(--border-medium);
 }
 
 .form-textarea {
@@ -422,7 +392,7 @@ const sendInquiry = (method: 'email' | 'whatsapp') => {
 
 .form-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   margin-top: 0.5rem;
 }
 

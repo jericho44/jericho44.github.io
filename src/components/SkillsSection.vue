@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import {
-  Wrench,
   Server,
   Layout,
   Database,
   Cloud,
   Layers,
-  Star,
+  Wrench,
 } from 'lucide-vue-next'
 import { skillsData } from '../data/portfolioData'
 import type { SkillItem } from '../types'
@@ -17,12 +16,12 @@ type CategoryFilter = 'all' | 'backend' | 'frontend' | 'database' | 'devops' | '
 const activeFilter = ref<CategoryFilter>('all')
 
 const categories = [
-  { id: 'all', label: 'All Technologies' },
-  { id: 'backend', label: 'Backend & APIs' },
-  { id: 'frontend', label: 'Frontend & UI' },
-  { id: 'database', label: 'Databases & Cache' },
-  { id: 'devops', label: 'DevOps & Cloud' },
-  { id: 'architecture', label: 'Architecture & Patterns' },
+  { id: 'all', label: 'All' },
+  { id: 'backend', label: 'Backend' },
+  { id: 'frontend', label: 'Frontend' },
+  { id: 'database', label: 'Databases' },
+  { id: 'devops', label: 'DevOps & Tools' },
+  { id: 'architecture', label: 'Architecture' },
 ]
 
 const filteredSkills = computed<SkillItem[]>(() => {
@@ -47,18 +46,10 @@ const getCategoryIcon = (category: string) => {
 <template>
   <section id="skills" class="section skills-section">
     <div class="container">
-      <!-- Section Header -->
       <div class="section-header">
-        <div class="section-tag">
-          <Wrench :size="14" />
-          <span>Technical Arsenal</span>
-        </div>
-        <h2 class="section-title">
-          Tech Stack &amp;
-          <span class="text-gradient">Specializations</span>
-        </h2>
+        <h2 class="section-title">Skills &amp; Technologies</h2>
         <p class="section-subtitle">
-          Proven competencies across scalable backend frameworks, relational storage engines, modern frontends, and cloud deployment pipelines.
+          Languages, frameworks, databases, and developer tools I work with.
         </p>
       </div>
 
@@ -81,17 +72,12 @@ const getCategoryIcon = (category: string) => {
           v-for="(skill, idx) in filteredSkills"
           :key="idx"
           class="skill-card glass-card"
-          :class="{ 'highlighted': skill.highlight }"
         >
           <div class="skill-top">
-            <div class="skill-icon-pill">
-              <component :is="getCategoryIcon(skill.category)" :size="16" />
-              <span class="skill-category-name">{{ skill.category }}</span>
+            <div class="skill-category-pill">
+              <component :is="getCategoryIcon(skill.category)" :size="13" />
+              <span>{{ skill.category }}</span>
             </div>
-            <span v-if="skill.highlight" class="core-tag" title="Core Production Focus">
-              <Star :size="12" />
-              <span>Core</span>
-            </span>
           </div>
 
           <h3 class="skill-name">{{ skill.name }}</h3>
@@ -106,7 +92,7 @@ const getCategoryIcon = (category: string) => {
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 @media (max-width: 960px) {
@@ -115,64 +101,41 @@ const getCategoryIcon = (category: string) => {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 580px) {
   .skills-grid {
     grid-template-columns: 1fr;
   }
 }
 
 .skill-card {
-  padding: 1.5rem;
+  padding: 1.25rem 1.4rem;
   display: flex;
   flex-direction: column;
-  transition: all var(--transition-normal);
-}
-
-.skill-card.highlighted {
-  border-color: rgba(99, 102, 241, 0.25);
-  background: var(--bg-card);
 }
 
 .skill-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.65rem;
 }
 
-.skill-icon-pill {
+.skill-category-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   font-size: 0.725rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-weight: 500;
+  text-transform: capitalize;
   color: var(--text-dim);
 }
 
-.core-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.15rem 0.5rem;
-  border-radius: var(--radius-full);
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  color: var(--accent-amber);
-  font-size: 0.7rem;
-  font-weight: 700;
-}
-
 .skill-name {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.25rem;
 }
 
 .skill-desc {
-  font-size: 0.85rem;
+  font-size: 0.825rem;
   line-height: 1.5;
   color: var(--text-muted);
 }

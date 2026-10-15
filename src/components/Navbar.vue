@@ -6,7 +6,6 @@ import {
   Menu,
   X,
   FileDown,
-  Code2,
 } from 'lucide-vue-next'
 import { profileData } from '../data/portfolioData'
 
@@ -16,10 +15,9 @@ const currentTheme = ref<'dark' | 'light'>('dark')
 
 const navLinks = [
   { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
   { name: 'Experience', href: '#experience' },
   { name: 'Projects', href: '#projects' },
-  { name: 'Education', href: '#education' },
+  { name: 'Skills', href: '#skills' },
   { name: 'Contact', href: '#contact' },
 ]
 
@@ -59,15 +57,10 @@ const closeMobileMenu = () => {
     :class="{ 'scrolled': isScrolled }"
   >
     <div class="container navbar-container">
-      <!-- Logo -->
+      <!-- Logo / Name -->
       <a href="#" class="navbar-logo" @click="closeMobileMenu">
-        <div class="logo-icon-box">
-          <Code2 :size="20" class="logo-icon" />
-        </div>
-        <span class="logo-text">
-          <span class="logo-name">Rico</span>
-          <span class="logo-highlight">.dev</span>
-        </span>
+        <span class="logo-name">rico<span class="text-accent">wahyu</span></span>
+        <span class="logo-badge font-mono">dev</span>
       </a>
 
       <!-- Desktop Nav Links -->
@@ -88,11 +81,11 @@ const closeMobileMenu = () => {
         <button
           @click="toggleTheme"
           class="theme-toggle-btn"
-          :title="currentTheme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+          :title="currentTheme === 'dark' ? 'Switch to Light' : 'Switch to Dark'"
           aria-label="Toggle Theme"
         >
-          <Sun v-if="currentTheme === 'dark'" :size="18" />
-          <Moon v-else :size="18" />
+          <Sun v-if="currentTheme === 'dark'" :size="16" />
+          <Moon v-else :size="16" />
         </button>
 
         <!-- Resume Download CTA -->
@@ -100,20 +93,20 @@ const closeMobileMenu = () => {
           :href="profileData.resumeUrl"
           target="_blank"
           download
-          class="btn btn-primary btn-sm resume-btn"
+          class="btn btn-secondary btn-sm resume-btn"
         >
-          <FileDown :size="16" />
-          <span>Resume CV</span>
+          <FileDown :size="14" />
+          <span>Resume</span>
         </a>
 
         <!-- Mobile Menu Toggle -->
         <button
           @click="isMobileMenuOpen = !isMobileMenuOpen"
           class="mobile-menu-btn"
-          aria-label="Toggle navigation menu"
+          aria-label="Toggle menu"
         >
-          <Menu v-if="!isMobileMenuOpen" :size="22" />
-          <X v-else :size="22" />
+          <Menu v-if="!isMobileMenuOpen" :size="20" />
+          <X v-else :size="20" />
         </button>
       </div>
     </div>
@@ -135,11 +128,11 @@ const closeMobileMenu = () => {
             :href="profileData.resumeUrl"
             target="_blank"
             download
-            class="btn btn-primary mobile-resume-btn"
+            class="btn btn-secondary mobile-resume-btn"
             @click="closeMobileMenu"
           >
-            <FileDown :size="18" />
-            <span>Download Resume PDF</span>
+            <FileDown :size="16" />
+            <span>Download Resume (PDF)</span>
           </a>
         </nav>
       </div>
@@ -154,15 +147,15 @@ const closeMobileMenu = () => {
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 1.25rem 0;
+  padding: 1.15rem 0;
   transition: all var(--transition-normal);
 }
 
 .navbar-wrapper.scrolled {
   padding: 0.85rem 0;
   background: var(--bg-glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-sm);
 }
@@ -176,29 +169,23 @@ const closeMobileMenu = () => {
 .navbar-logo {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  font-weight: 800;
-  font-size: 1.25rem;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.15rem;
   letter-spacing: -0.02em;
-}
-
-.logo-icon-box {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-md);
-  background: var(--gradient-brand);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
-}
-
-.logo-text {
   color: var(--text-main);
 }
 
-.logo-highlight {
+.logo-badge {
+  font-size: 0.7rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+}
+
+.text-accent {
   color: var(--accent-primary);
 }
 
@@ -209,7 +196,7 @@ const closeMobileMenu = () => {
 }
 
 .nav-link {
-  font-size: 0.925rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-muted);
   position: relative;
@@ -217,35 +204,19 @@ const closeMobileMenu = () => {
   padding: 0.25rem 0;
 }
 
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gradient-brand);
-  transition: width var(--transition-fast);
-  border-radius: 2px;
-}
-
 .nav-link:hover {
   color: var(--text-main);
-}
-
-.nav-link:hover::after {
-  width: 100%;
 }
 
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
 }
 
 .theme-toggle-btn {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -258,14 +229,13 @@ const closeMobileMenu = () => {
 
 .theme-toggle-btn:hover {
   color: var(--text-main);
-  border-color: var(--border-accent);
-  transform: rotate(15deg);
+  border-color: var(--border-medium);
 }
 
 .mobile-menu-btn {
   display: none;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-md);
   align-items: center;
   justify-content: center;
@@ -274,7 +244,7 @@ const closeMobileMenu = () => {
   border: 1px solid var(--border-subtle);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 820px) {
   .desktop-nav {
     display: none;
   }
@@ -289,41 +259,41 @@ const closeMobileMenu = () => {
 .mobile-nav-drawer {
   background: var(--bg-surface);
   border-bottom: 1px solid var(--border-subtle);
-  padding: 1.5rem;
-  box-shadow: var(--shadow-lg);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-md);
 }
 
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.85rem;
 }
 
 .mobile-nav-link {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 500;
   color: var(--text-muted);
-  padding: 0.5rem 0;
+  padding: 0.4rem 0;
   border-bottom: 1px solid var(--border-subtle);
 }
 
 .mobile-nav-link:hover {
-  color: var(--accent-primary);
+  color: var(--text-main);
 }
 
 .mobile-resume-btn {
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   width: 100%;
 }
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.25s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .slide-enter-from,
 .slide-leave-to {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-8px);
 }
 </style>

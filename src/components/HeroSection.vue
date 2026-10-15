@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import {
-  ArrowRight,
+  ArrowDown,
   FileDown,
   Github,
   Linkedin,
   Mail,
   MessageCircle,
-  Terminal,
-  ShieldCheck,
-  CheckCircle2,
+  Briefcase,
+  Layers,
+  MapPin,
 } from 'lucide-vue-next'
 import { profileData, statsData } from '../data/portfolioData'
 </script>
@@ -19,34 +19,31 @@ import { profileData, statsData } from '../data/portfolioData'
       <div class="hero-grid">
         <!-- Left Content -->
         <div class="hero-content">
-          <!-- Availability Badge -->
-          <div class="availability-badge" v-if="profileData.availableForWork">
-            <span class="pulse-dot"></span>
-            <span>Available for Fullstack & Backend Roles</span>
+          <!-- Availability Pill -->
+          <div class="availability-pill" v-if="profileData.availableForWork">
+            <span class="status-indicator"></span>
+            <span>Open to fullstack &amp; backend engineering roles</span>
           </div>
 
-          <!-- Name & Title -->
+          <!-- Name & Role -->
           <h1 class="hero-title">
-            Hi, I'm <br />
-            <span class="text-gradient">{{ profileData.name }}</span>
+            {{ profileData.name }}
           </h1>
 
-          <p class="hero-role">
-            <span class="role-badge">{{ profileData.title }}</span>
-            <span class="role-divider">•</span>
-            <span class="role-desc">Enterprise Systems & Backend Architect</span>
+          <p class="hero-tagline">
+            {{ profileData.title }} specializing in backend systems, REST APIs, and modern web applications.
           </p>
 
-          <!-- Short Bio -->
+          <!-- Bio -->
           <p class="hero-summary">
-            {{ profileData.summary }}
+            Currently working at <strong>PT Wonokoyo Jaya Corporindo</strong>. 3+ years of experience engineering enterprise web tools, ERPs, and workflow systems using <strong>Laravel</strong>, <strong>Golang</strong>, <strong>Spring Boot</strong>, and <strong>Vue.js</strong>.
           </p>
 
           <!-- CTAs -->
           <div class="hero-cta-group">
             <a href="#projects" class="btn btn-primary">
-              <span>Explore Enterprise Projects</span>
-              <ArrowRight :size="18" />
+              <span>View Projects</span>
+              <ArrowDown :size="16" />
             </a>
             <a
               :href="profileData.resumeUrl"
@@ -54,14 +51,16 @@ import { profileData, statsData } from '../data/portfolioData'
               download
               class="btn btn-secondary"
             >
-              <FileDown :size="18" />
-              <span>Download CV</span>
+              <FileDown :size="16" />
+              <span>Resume (PDF)</span>
+            </a>
+            <a href="#contact" class="btn btn-ghost">
+              <span>Contact</span>
             </a>
           </div>
 
-          <!-- Social Quick Links -->
-          <div class="hero-social-bar">
-            <span class="social-label">Connect:</span>
+          <!-- Social Links -->
+          <div class="hero-social-row">
             <a
               :href="profileData.github"
               target="_blank"
@@ -70,7 +69,7 @@ import { profileData, statsData } from '../data/portfolioData'
               title="GitHub Profile"
               aria-label="GitHub"
             >
-              <Github :size="20" />
+              <Github :size="19" />
             </a>
             <a
               :href="profileData.linkedin"
@@ -80,108 +79,104 @@ import { profileData, statsData } from '../data/portfolioData'
               title="LinkedIn Profile"
               aria-label="LinkedIn"
             >
-              <Linkedin :size="20" />
+              <Linkedin :size="19" />
             </a>
             <a
               :href="'mailto:' + profileData.email"
               class="social-link"
-              title="Send Direct Email"
+              title="Send Email"
               aria-label="Email"
             >
-              <Mail :size="20" />
+              <Mail :size="19" />
             </a>
             <a
               :href="profileData.whatsapp"
               target="_blank"
               rel="noopener noreferrer"
               class="social-link"
-              title="Chat on WhatsApp"
+              title="WhatsApp"
               aria-label="WhatsApp"
             >
-              <MessageCircle :size="20" />
+              <MessageCircle :size="19" />
             </a>
           </div>
         </div>
 
-        <!-- Right Terminal / Code Visualizer -->
-        <div class="hero-visual">
-          <div class="code-terminal-card glass-card">
-            <!-- Terminal Header -->
-            <div class="terminal-header">
-              <div class="terminal-dots">
-                <span class="dot dot-red"></span>
-                <span class="dot dot-yellow"></span>
-                <span class="dot dot-green"></span>
-              </div>
-              <div class="terminal-title">
-                <Terminal :size="14" />
-                <span>engineer_spec.ts</span>
-              </div>
-              <div class="terminal-action">
-                <ShieldCheck :size="16" class="text-emerald" />
-              </div>
+        <!-- Right: Professional Profile Snapshot Card -->
+        <div class="hero-card-col">
+          <div class="snapshot-card glass-card">
+            <div class="snapshot-header">
+              <span class="snapshot-label font-mono">PROFILE SUMMARY</span>
+              <span class="location-tag">
+                <MapPin :size="12" />
+                <span>{{ profileData.location }}</span>
+              </span>
             </div>
 
-            <!-- Terminal Code Body -->
-            <div class="terminal-body font-mono">
-              <div class="code-line">
-                <span class="keyword">const</span> <span class="variable">engineer</span>: <span class="type">FullstackArchitect</span> = {
+            <div class="snapshot-body">
+              <div class="snapshot-item">
+                <div class="snapshot-item-header">
+                  <Briefcase :size="15" class="item-icon" />
+                  <span class="item-title">Current Position</span>
+                </div>
+                <div class="item-desc">
+                  Fullstack Developer at <span class="highlight-text">PT Wonokoyo Jaya Corporindo</span>
+                </div>
               </div>
-              <div class="code-line indent-1">
-                <span class="prop">name</span>: <span class="string">'Rico Wahyu Yudana Putra'</span>,
+
+              <div class="snapshot-item">
+                <div class="snapshot-item-header">
+                  <Layers :size="15" class="item-icon" />
+                  <span class="item-title">Primary Backend</span>
+                </div>
+                <div class="tags-row">
+                  <span class="tag">Laravel</span>
+                  <span class="tag">Golang</span>
+                  <span class="tag">Spring Boot</span>
+                  <span class="tag">REST API</span>
+                </div>
               </div>
-              <div class="code-line indent-1">
-                <span class="prop">location</span>: <span class="string">'Surabaya, Indonesia'</span>,
+
+              <div class="snapshot-item">
+                <div class="snapshot-item-header">
+                  <Layers :size="15" class="item-icon" />
+                  <span class="item-title">Frontend &amp; DB</span>
+                </div>
+                <div class="tags-row">
+                  <span class="tag">Vue.js (Vue 3)</span>
+                  <span class="tag">TypeScript</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">MySQL</span>
+                </div>
               </div>
-              <div class="code-line indent-1">
-                <span class="prop">currentRole</span>: <span class="string">'Fullstack Developer'</span>,
-              </div>
-              <div class="code-line indent-1">
-                <span class="prop">company</span>: <span class="string">'PT Wonokoyo Jaya Corporindo'</span>,
-              </div>
-              <div class="code-line indent-1">
-                <span class="prop">coreBackend</span>: [
-              </div>
-              <div class="code-line indent-2">
-                <span class="string">'Laravel'</span>, <span class="string">'Golang'</span>, <span class="string">'Spring Boot'</span>, <span class="string">'Ruby on Rails'</span>
-              </div>
-              <div class="code-line indent-1">],</div>
-              <div class="code-line indent-1">
-                <span class="prop">coreFrontend</span>: [<span class="string">'Vue 3'</span>, <span class="string">'TypeScript'</span>, <span class="string">'Tailwind'</span>],
-              </div>
-              <div class="code-line indent-1">
-                <span class="prop">databases</span>: [<span class="string">'PostgreSQL'</span>, <span class="string">'MySQL'</span>, <span class="string">'SQL Server'</span>],
-              </div>
-              <div class="code-line indent-1">
-                <span class="prop">principles</span>: [
-                  <span class="string">'Clean Architecture'</span>,
-                  <span class="string">'SOLID'</span>,
-                  <span class="string">'High Availability'</span>
-                ],
-              </div>
-              <div class="code-line indent-1">
-                <span class="prop">openToCollab</span>: <span class="boolean">true</span>
-              </div>
-              <div class="code-line">};</div>
-              <div class="code-line status-active mt-2">
-                <CheckCircle2 :size="14" class="text-emerald" />
-                <span class="comment">// 3+ years delivering scalable enterprise applications</span>
+
+              <div class="snapshot-item">
+                <div class="snapshot-item-header">
+                  <Layers :size="15" class="item-icon" />
+                  <span class="item-title">Deployment &amp; Infra</span>
+                </div>
+                <div class="tags-row">
+                  <span class="tag">Linux VPS</span>
+                  <span class="tag">Docker</span>
+                  <span class="tag">Nginx</span>
+                  <span class="tag">CI/CD</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Stats Counter Grid -->
-      <div class="stats-grid">
+      <!-- Stats Row -->
+      <div class="stats-row">
         <div
           v-for="(stat, idx) in statsData"
           :key="idx"
-          class="stat-card glass-card"
+          class="stat-box"
         >
-          <div class="stat-value text-gradient">{{ stat.value }}</div>
-          <div class="stat-label">{{ stat.label }}</div>
-          <div class="stat-sublabel">{{ stat.sublabel }}</div>
+          <div class="stat-number">{{ stat.value }}</div>
+          <div class="stat-title">{{ stat.label }}</div>
+          <div class="stat-desc">{{ stat.sublabel }}</div>
         </div>
       </div>
     </div>
@@ -190,15 +185,14 @@ import { profileData, statsData } from '../data/portfolioData'
 
 <style scoped>
 .hero-section {
-  padding-top: 8.5rem;
-  padding-bottom: 5rem;
-  position: relative;
+  padding-top: 8rem;
+  padding-bottom: 4rem;
 }
 
 @media (max-width: 768px) {
   .hero-section {
-    padding-top: 6.5rem;
-    padding-bottom: 3.5rem;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
   }
 }
 
@@ -216,92 +210,89 @@ import { profileData, statsData } from '../data/portfolioData'
   }
 }
 
-.availability-badge {
+.availability-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  padding: 0.4rem 0.95rem;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
   border-radius: var(--radius-full);
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  color: var(--accent-emerald);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
   font-size: 0.825rem;
-  font-weight: 600;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-emerald);
 }
 
 .hero-title {
-  font-size: 3.1rem;
+  font-size: 2.75rem;
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.03em;
   color: var(--text-main);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 2.25rem;
+    font-size: 2.15rem;
   }
 }
 
-.hero-role {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  font-size: 1.1rem;
-}
-
-.role-badge {
-  font-weight: 700;
-  color: var(--accent-primary);
-  background: rgba(99, 102, 241, 0.12);
-  padding: 0.25rem 0.75rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(99, 102, 241, 0.25);
-}
-
-.role-divider {
-  color: var(--text-dim);
-}
-
-.role-desc {
-  color: var(--text-muted);
+.hero-tagline {
+  font-size: 1.2rem;
   font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 1.25rem;
+  line-height: 1.45;
 }
 
 .hero-summary {
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1.7;
   color: var(--text-muted);
-  max-width: 580px;
   margin-bottom: 2rem;
+  max-width: 580px;
+}
+
+.hero-summary strong {
+  color: var(--text-main);
 }
 
 .hero-cta-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2.25rem;
+  gap: 0.85rem;
+  margin-bottom: 2rem;
 }
 
-.hero-social-bar {
+.btn-ghost {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+}
+
+.btn-ghost:hover {
+  color: var(--text-main);
+  background: var(--bg-surface);
+  border-color: var(--border-subtle);
+}
+
+.hero-social-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
-}
-
-.social-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-dim);
+  gap: 0.75rem;
 }
 
 .social-link {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -313,137 +304,138 @@ import { profileData, statsData } from '../data/portfolioData'
 }
 
 .social-link:hover {
-  color: var(--accent-primary);
-  border-color: var(--border-accent);
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+  color: var(--text-main);
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
 }
 
-/* Terminal Card Styling */
-.code-terminal-card {
-  padding: 0;
+/* Snapshot Card */
+.snapshot-card {
+  padding: 1.75rem;
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
+  background: var(--bg-surface);
   border: 1px solid var(--border-medium);
-  background: rgba(10, 15, 28, 0.85);
 }
 
-[data-theme="light"] .code-terminal-card {
-  background: rgba(248, 250, 252, 0.95);
-}
-
-.terminal-header {
+.snapshot-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.25rem;
-  background: rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
   border-bottom: 1px solid var(--border-subtle);
 }
 
-.terminal-dots {
+.snapshot-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.location-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.snapshot-body {
   display: flex;
-  gap: 6px;
+  flex-direction: column;
+  gap: 1.15rem;
 }
 
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-.dot-red { background: #ef4444; }
-.dot-yellow { background: #f59e0b; }
-.dot-green { background: #10b981; }
-
-.terminal-title {
+.snapshot-item-header {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.775rem;
-  font-family: var(--font-mono);
+  gap: 0.45rem;
+  margin-bottom: 0.35rem;
+}
+
+.item-icon {
   color: var(--text-dim);
 }
 
-.terminal-body {
-  padding: 1.25rem;
-  font-size: 0.85rem;
-  line-height: 1.6;
+.item-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
 }
 
-.font-mono {
-  font-family: var(--font-mono);
+.item-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
-.code-line {
-  white-space: pre-wrap;
-  word-break: break-all;
+.highlight-text {
+  color: var(--text-main);
+  font-weight: 600;
 }
 
-.indent-1 { padding-left: 1.25rem; }
-.indent-2 { padding-left: 2.25rem; }
-
-.keyword { color: #f43f5e; font-weight: 600; }
-.variable { color: #38bdf8; }
-.type { color: #fbbf24; }
-.prop { color: #c084fc; }
-.string { color: #34d399; }
-.boolean { color: #f97316; }
-.comment { color: var(--text-dim); font-style: italic; }
-
-.text-emerald { color: var(--accent-emerald); }
-
-.status-active {
+.tags-row {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  border-top: 1px dashed var(--border-subtle);
-  padding-top: 0.75rem;
+  flex-wrap: wrap;
+  gap: 0.4rem;
 }
 
-.mt-2 { margin-top: 0.75rem; }
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
 
-/* Stats Bar */
-.stats-grid {
+/* Stats Row */
+.stats-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
-  margin-top: 4rem;
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border-subtle);
 }
 
-@media (max-width: 900px) {
-  .stats-grid {
+@media (max-width: 860px) {
+  .stats-row {
     grid-template-columns: repeat(2, 1fr);
-    margin-top: 2.5rem;
   }
 }
 
-@media (max-width: 540px) {
-  .stats-grid {
+@media (max-width: 480px) {
+  .stats-row {
     grid-template-columns: 1fr;
   }
 }
 
-.stat-card {
-  padding: 1.5rem;
-  text-align: center;
+.stat-box {
+  padding: 0.5rem 0;
 }
 
-.stat-value {
-  font-size: 2rem;
+.stat-number {
+  font-size: 1.75rem;
   font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.35rem;
-}
-
-.stat-label {
-  font-size: 0.95rem;
-  font-weight: 700;
   color: var(--text-main);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
 }
 
-.stat-sublabel {
-  font-size: 0.775rem;
+.stat-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.15rem;
+}
+
+.stat-desc {
+  font-size: 0.8rem;
   color: var(--text-dim);
 }
 </style>

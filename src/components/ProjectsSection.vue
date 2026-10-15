@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import {
-  FolderGit2,
   Building2,
   Calendar,
   ExternalLink,
@@ -43,18 +42,10 @@ const closeModal = () => {
 <template>
   <section id="projects" class="section projects-section">
     <div class="container">
-      <!-- Section Header -->
       <div class="section-header">
-        <div class="section-tag">
-          <FolderGit2 :size="14" />
-          <span>Proven Track Record</span>
-        </div>
-        <h2 class="section-title">
-          Featured Enterprise
-          <span class="text-gradient">Projects &amp; Systems</span>
-        </h2>
+        <h2 class="section-title">Projects</h2>
         <p class="section-subtitle">
-          Real-world mission-critical platforms engineered for State-Owned Enterprises (BUMN), industrial manufacturing plants, and corporate governance.
+          Selected enterprise web applications and backend systems I have contributed to.
         </p>
       </div>
 
@@ -80,9 +71,9 @@ const closeModal = () => {
         >
           <!-- Card Header -->
           <div class="card-meta">
-            <span class="badge badge-accent">{{ project.category }}</span>
-            <div class="meta-date">
-              <Calendar :size="13" />
+            <span class="category-pill">{{ project.category }}</span>
+            <div class="meta-date font-mono">
+              <Calendar :size="12" />
               <span>{{ project.date }}</span>
             </div>
           </div>
@@ -90,7 +81,7 @@ const closeModal = () => {
           <!-- Project Title & Client -->
           <h3 class="project-title">{{ project.title }}</h3>
           <div class="project-client">
-            <Building2 :size="15" class="client-icon" />
+            <Building2 :size="14" class="client-icon" />
             <span>{{ project.client }}</span>
           </div>
 
@@ -103,7 +94,7 @@ const closeModal = () => {
               v-for="(point, idx) in project.highlights.slice(0, 3)"
               :key="idx"
             >
-              <ChevronRight :size="14" class="bullet-icon" />
+              <ChevronRight :size="13" class="bullet-icon" />
               <span>{{ point }}</span>
             </li>
           </ul>
@@ -125,8 +116,8 @@ const closeModal = () => {
               @click="openProjectModal(project)"
               class="btn btn-secondary btn-sm inspect-btn"
             >
-              <span>Inspect Architecture Details</span>
-              <ExternalLink :size="14" />
+              <span>View System Details</span>
+              <ExternalLink :size="13" />
             </button>
           </div>
         </div>
@@ -146,7 +137,7 @@ const closeModal = () => {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 1.75rem;
+  gap: 1.5rem;
 }
 
 @media (max-width: 900px) {
@@ -156,7 +147,7 @@ const closeModal = () => {
 }
 
 .project-card {
-  padding: 2rem;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
 }
@@ -165,85 +156,94 @@ const closeModal = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.category-pill {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--bg-surface-elevated);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
 }
 
 .meta-date {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.8rem;
+  font-size: 0.775rem;
   color: var(--text-dim);
-  font-family: var(--font-mono);
 }
 
 .project-title {
-  font-size: 1.4rem;
-  font-weight: 800;
+  font-size: 1.3rem;
+  font-weight: 700;
   color: var(--text-main);
   letter-spacing: -0.015em;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
   line-height: 1.3;
 }
 
 .project-client {
   display: flex;
   align-items: center;
-  gap: 0.45rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--accent-primary);
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
   margin-bottom: 1rem;
 }
 
 .client-icon {
+  color: var(--text-dim);
   flex-shrink: 0;
 }
 
 .project-summary {
-  font-size: 0.925rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   color: var(--text-muted);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.15rem;
 }
 
 .project-features {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
   padding: 0;
 }
 
 .project-features li {
   display: flex;
   align-items: flex-start;
-  gap: 0.4rem;
+  gap: 0.35rem;
   font-size: 0.85rem;
   line-height: 1.45;
   color: var(--text-muted);
 }
 
 .bullet-icon {
-  color: var(--accent-primary);
+  color: var(--text-dim);
   flex-shrink: 0;
-  margin-top: 0.15rem;
+  margin-top: 0.2rem;
 }
 
 .project-tech-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.4rem;
   margin-top: auto;
-  margin-bottom: 1.5rem;
-  padding-top: 1rem;
+  margin-bottom: 1.25rem;
+  padding-top: 0.85rem;
   border-top: 1px solid var(--border-subtle);
 }
 
 .card-footer {
   display: flex;
-  justify-content: flex-start;
 }
 
 .inspect-btn {

@@ -6,7 +6,7 @@ import {
   Calendar,
   Layers,
   CheckCircle2,
-  TrendingUp,
+  Check,
 } from 'lucide-vue-next'
 import type { PortfolioProject } from '../types'
 
@@ -48,15 +48,15 @@ onUnmounted(() => {
           class="modal-close-btn"
           aria-label="Close modal"
         >
-          <X :size="20" />
+          <X :size="18" />
         </button>
 
         <!-- Header -->
         <div class="modal-header">
           <div class="modal-meta-row">
-            <span class="badge badge-accent">{{ project.category }}</span>
-            <span class="meta-item">
-              <Calendar :size="14" />
+            <span class="badge">{{ project.category }}</span>
+            <span class="meta-item font-mono">
+              <Calendar :size="13" />
               <span>{{ project.date }}</span>
             </span>
           </div>
@@ -64,37 +64,34 @@ onUnmounted(() => {
           <h3 class="modal-title">{{ project.title }}</h3>
 
           <div class="modal-client">
-            <Building2 :size="16" class="client-icon" />
+            <Building2 :size="15" class="client-icon" />
             <span>Client: <strong>{{ project.client }}</strong></span>
           </div>
         </div>
 
-        <!-- Summary -->
+        <!-- Body -->
         <div class="modal-body">
           <div class="modal-section">
-            <h4 class="section-label">System Overview</h4>
+            <h4 class="section-label">Overview</h4>
             <p class="summary-text">{{ project.summary }}</p>
           </div>
 
-          <!-- Metrics / Impact -->
-          <div v-if="project.metrics" class="metrics-box">
-            <TrendingUp :size="18" class="metrics-icon" />
-            <div>
-              <div class="metrics-title">Operational Impact</div>
-              <div class="metrics-text">{{ project.metrics }}</div>
-            </div>
+          <!-- Impact / Status -->
+          <div v-if="project.metrics" class="status-box">
+            <Check :size="16" class="status-icon" />
+            <div class="status-text">{{ project.metrics }}</div>
           </div>
 
-          <!-- Key Contributions & Technical Highlights -->
+          <!-- Key Contributions & Features -->
           <div class="modal-section">
-            <h4 class="section-label">Key Engineering Contributions &amp; Features</h4>
+            <h4 class="section-label">Key Responsibilities &amp; Implementation</h4>
             <div class="highlights-list">
               <div
                 v-for="(point, idx) in project.highlights"
                 :key="idx"
                 class="highlight-item"
               >
-                <CheckCircle2 :size="16" class="highlight-bullet" />
+                <CheckCircle2 :size="15" class="highlight-bullet" />
                 <span>{{ point }}</span>
               </div>
             </div>
@@ -103,8 +100,8 @@ onUnmounted(() => {
           <!-- Technologies Used -->
           <div class="modal-section">
             <h4 class="section-label">
-              <Layers :size="15" />
-              <span>Technologies &amp; Architecture Stack</span>
+              <Layers :size="14" />
+              <span>Technologies</span>
             </h4>
             <div class="tech-pills">
               <span
@@ -121,7 +118,7 @@ onUnmounted(() => {
         <!-- Footer -->
         <div class="modal-footer">
           <button @click="emit('close')" class="btn btn-secondary btn-sm">
-            Close Overview
+            Close
           </button>
         </div>
       </div>
@@ -134,9 +131,9 @@ onUnmounted(() => {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(4, 7, 15, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -146,12 +143,12 @@ onUnmounted(() => {
 
 .modal-container {
   width: 100%;
-  max-width: 680px;
+  max-width: 640px;
   background: var(--bg-surface);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
-  padding: 2.25rem;
+  padding: 2rem;
   position: relative;
   max-height: 90vh;
   overflow-y: auto;
@@ -161,8 +158,8 @@ onUnmounted(() => {
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-md);
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
@@ -175,160 +172,143 @@ onUnmounted(() => {
 
 .modal-close-btn:hover {
   color: var(--text-main);
-  border-color: var(--border-accent);
+  border-color: var(--border-medium);
 }
 
 .modal-header {
-  margin-bottom: 1.75rem;
-  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-subtle);
 }
 
 .modal-meta-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.85rem;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
 .meta-item {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.8rem;
+  font-size: 0.775rem;
   color: var(--text-dim);
-  font-family: var(--font-mono);
 }
 
 .modal-title {
-  font-size: 1.75rem;
-  font-weight: 800;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--text-main);
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.35rem;
   padding-right: 2rem;
 }
 
 .modal-client {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
+  gap: 0.45rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
 }
 
 .client-icon {
-  color: var(--accent-primary);
+  color: var(--text-dim);
 }
 
 .modal-body {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .modal-section {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.5rem;
 }
 
 .section-label {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.825rem;
-  font-weight: 700;
+  gap: 0.35rem;
+  font-size: 0.775rem;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-dim);
 }
 
 .summary-text {
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: 0.925rem;
+  line-height: 1.6;
   color: var(--text-muted);
 }
 
-.metrics-box {
+.status-box {
   display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  padding: 1rem 1.25rem;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
-  background: rgba(16, 185, 129, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
 }
 
-.metrics-icon {
+.status-icon {
   color: var(--accent-emerald);
   flex-shrink: 0;
-  margin-top: 0.15rem;
 }
 
-.metrics-title {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--accent-emerald);
-  margin-bottom: 0.2rem;
-}
-
-.metrics-text {
-  font-size: 0.9rem;
-  color: var(--text-main);
+.status-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
 .highlights-list {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.55rem;
 }
 
 .highlight-item {
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
-  font-size: 0.9rem;
+  gap: 0.55rem;
+  font-size: 0.875rem;
   line-height: 1.5;
   color: var(--text-muted);
 }
 
 .highlight-bullet {
-  color: var(--accent-primary);
+  color: var(--text-dim);
   flex-shrink: 0;
-  margin-top: 0.2rem;
+  margin-top: 0.15rem;
 }
 
 .tech-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .modal-footer {
-  margin-top: 2rem;
-  padding-top: 1.25rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--border-subtle);
   display: flex;
   justify-content: flex-end;
 }
 
-/* Transitions */
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.2s ease;
 }
 
 .modal-fade-enter-from,
 .modal-fade-leave-to {
   opacity: 0;
-}
-
-.modal-fade-enter-from .modal-container,
-.modal-fade-leave-to .modal-container {
-  transform: scale(0.95) translateY(10px);
 }
 </style>
