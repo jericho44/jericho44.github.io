@@ -120,7 +120,7 @@ import { profileData, statsData } from '../data/portfolioData'
                   <span class="item-title">Current Position</span>
                 </div>
                 <div class="item-desc">
-                  Fullstack Developer at <span class="highlight-text">PT Wonokoyo Jaya Corporindo</span>
+                  Software Engineer at <span class="highlight-text">PT Wonokoyo Jaya Corporindo</span>
                 </div>
               </div>
 

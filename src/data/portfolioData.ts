@@ -113,7 +113,7 @@ export const skillsData: SkillItem[] = [
 export const experiencesData: WorkExperience[] = [
   {
     id: 'wonokoyo',
-    role: 'Fullstack Developer',
+    role: 'Software Engineer',
     company: 'PT Wonokoyo Jaya Corporindo',
     location: 'Surabaya, Indonesia',
     period: 'Jan 2026 - Present',
